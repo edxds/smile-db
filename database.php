@@ -3,7 +3,7 @@ class MySqlHost {
   private $connection;
 
   private function __construct($host, $username, $password) {
-    $this->connection = new mysqli($host, $username, $password);
+    $this->connection = new mysqli("p:" . $host, $username, $password);
   }
 
   public static function connect($host, $username, $password) {
