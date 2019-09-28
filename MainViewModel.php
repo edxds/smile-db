@@ -71,4 +71,12 @@ class MainViewModel {
     public function tableNames() {
         return $this->table_names;
     }
+
+    public function selectDatabaseUrl($database) {
+        return "index.php?db_name=$database";
+    }
+
+    public function selectTableUrl($table) {
+        return "index.php?db_name=$this->selected_db&table_name=$table";
+    }
 }
