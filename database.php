@@ -1,13 +1,19 @@
 <?php
 class MySqlHost {
   private $connection;
+  private $host;
 
   private function __construct($host, $username, $password) {
+    $this->host = $host;
     $this->connection = new mysqli("p:" . $host, $username, $password);
   }
 
   public static function connect($host, $username, $password) {
     return new MySqlHost($host, $username, $password);
+  }
+
+  public function getHostName() {
+    return $this->host;
   }
 
   public function useDatabase($database_name) {
