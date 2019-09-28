@@ -43,6 +43,12 @@ class MySqlHost {
     return $state;
   }
 
+  public function fetchTableRowCount($table) {
+    $result = $this->connection->query("select count(*) from $table");
+    $row_count = $result->fetch_array(MYSQLI_NUM)[0];
+    return $row_count;
+  }
+
   private function queryMetadataToArray($query) {
     $result = $this->connection->query($query);
     $metadata = array();
