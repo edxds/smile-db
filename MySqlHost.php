@@ -32,6 +32,17 @@ class MySqlHost {
     return $this->queryMetadataToArray("show columns from $table_name");
   }
 
+  public function fetchTableState($table, $offset = 0, $limit = 10) {
+    $result = $this->connection->query("select * from $table limit $offset, $limit");
+    $state = array();
+
+    while ($row = $result->fetch_assoc()) {
+      $state[] = $row;
+    }
+
+    return $state;
+  }
+
   private function queryMetadataToArray($query) {
     $result = $this->connection->query($query);
     $metadata = array();
