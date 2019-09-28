@@ -79,6 +79,10 @@ class MainViewModel {
         return $this->table_names;
     }
 
+    public function tableSchema() {
+      return $this->host->fetchTableColumnNames($this->selected_table);
+    }
+
     public function tableState() {
         return $this->host->fetchTableState($this->selected_table, $this->current_row_offset, 10);
     }
