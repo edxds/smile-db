@@ -64,15 +64,20 @@ if ($viewModel->shouldRedirectToConnect()) {
         <?php if (!$viewModel->hasSelectedTable()): ?>
           <p>Selecione uma tabela para ver seu conteúdo</p>
         <?php else: ?>
-          <ul>
+          <table>
+            <tr>
+              <?php foreach ($viewModel->tableSchema() as $column): ?>
+                <th><?= $column ?></th>
+              <?php endforeach; ?>
+            </tr>
             <?php foreach ($viewModel->tableState() as $row): ?>
-              <li>
-                <?php foreach ($row as $column): ?>
-                  <span> <?= $column ?> |</span>
+              <tr>
+                <?php foreach ($row as $columnState): ?>
+                  <td> <?= $columnState ?></td>
                 <?php endforeach; ?>
-              </li>
+              </tr>
             <?php endforeach; ?>
-          </ul>
+          </table>
         <?php endif; ?>
       </div>
     </section>
