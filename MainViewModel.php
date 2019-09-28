@@ -8,6 +8,8 @@ class MainViewModel {
     private $selected_db;
     private $selected_table;
 
+    private $current_row_offset;
+
     private $should_redirect_to_connect;
     private $page_title;
 
@@ -19,7 +21,7 @@ class MainViewModel {
     private $db_names;
     private $table_names;
 
-    public function __construct($selected_db = NULL, $selected_table = NULL) {
+    public function __construct($selected_db = NULL, $selected_table = NULL, $current_offset = 0) {
         $session = Session::getInstance();
 
         $this->should_redirect_to_connect = !$session->areCredentialsSet();
@@ -31,6 +33,8 @@ class MainViewModel {
 
         $this->selected_db = $selected_db;
         $this->selected_table = $selected_table;
+
+        $this->current_row_offset = $current_offset;
 
         $this->has_selected_db = isset($this->selected_db);
         $this->has_selected_table = isset($this->selected_table);
@@ -73,6 +77,10 @@ class MainViewModel {
 
     public function tableNames() {
         return $this->table_names;
+    }
+
+    public function tableState() {
+        return $this->host->fetchTableState($this->selected_table, $this->current_row_offset, 10);
     }
 
     public function selectDatabaseUrl($database) {
