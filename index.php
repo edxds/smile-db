@@ -28,7 +28,7 @@ if ($viewModel->shouldRedirectToConnect()) {
       <div>:-)db</div>
       <div>
         <p>Conectado à <span><?= $viewModel->hostName() ?></span></p>
-        <button>Desconectar</button>
+        <a href="disconnect.php">Desconectar</a>
       </div>
     </header>
     <section>
