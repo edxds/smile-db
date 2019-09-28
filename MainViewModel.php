@@ -1,4 +1,7 @@
 <?php
+require_once "MySqlHost.php";
+require_once "Session.php";
+
 class MainViewModel {
     private $host;
 
