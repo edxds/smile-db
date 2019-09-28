@@ -7,8 +7,11 @@ class MainViewModel {
 
     private $selected_db;
     private $selected_table;
+    private $row_count;
+
 
     private $current_row_offset;
+    private $row_limit = 10;
 
     private $should_redirect_to_connect;
     private $page_title;
@@ -20,6 +23,9 @@ class MainViewModel {
 
     private $db_names;
     private $table_names;
+
+    private $should_show_next_btn;
+    private $should_show_previous_btn;
 
     public function __construct($selected_db = NULL, $selected_table = NULL, $current_offset = 0) {
         $session = Session::getInstance();
@@ -34,7 +40,7 @@ class MainViewModel {
         $this->selected_db = $selected_db;
         $this->selected_table = $selected_table;
 
-        $this->current_row_offset = $current_offset;
+        $this->current_row_offset = (int) $current_offset;
 
         $this->has_selected_db = isset($this->selected_db);
         $this->has_selected_table = isset($this->selected_table);
@@ -45,6 +51,13 @@ class MainViewModel {
             $this->host->useDatabase($selected_db);
             $this->table_names = $this->host->fetchDatabaseTableNames();
         }
+
+        if ($this->has_selected_table) {
+          $this->row_count = $this->host->fetchTableRowCount($this->selected_table);
+        }
+
+        $this->should_show_next_btn = $this->row_count - ($this->current_row_offset + $this->row_limit) > 0;
+        $this->should_show_previous_btn = $this->current_row_offset != 0;
 
         $this->page_title = $this->has_selected_table
             ? "Conteúdo | " . $this->selected_table
@@ -84,7 +97,7 @@ class MainViewModel {
     }
 
     public function tableState() {
-        return $this->host->fetchTableState($this->selected_table, $this->current_row_offset, 10);
+        return $this->host->fetchTableState($this->selected_table, $this->current_row_offset, $this->row_limit);
     }
 
     public function selectDatabaseUrl($database) {
@@ -93,5 +106,29 @@ class MainViewModel {
 
     public function selectTableUrl($table) {
         return "index.php?db_name=$this->selected_db&table_name=$table";
+    }
+
+    public function shouldShowNextButton() {
+      return $this->should_show_next_btn;
+    }
+
+    public function shouldShowPreviousButton() {
+      return $this->should_show_previous_btn;
+    }
+
+    public function nextPageUrl() {
+      if (!$this->should_show_next_btn) return NULL;
+      return "index.php"
+          . "?db_name=$this->selected_db"
+          . "&table_name=$this->selected_table"
+          . "&row_offset=" . ($this->current_row_offset + $this->row_limit);
+    }
+
+    public function previousPageUrl() {
+      if (!$this->should_show_previous_btn) return NULL;
+      return "index.php"
+          . "?db_name=$this->selected_db"
+          . "&table_name=$this->selected_table"
+          . "&row_offset=" . ($this->current_row_offset - $this->row_limit);
     }
 }
