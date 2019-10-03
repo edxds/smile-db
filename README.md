@@ -18,11 +18,10 @@ separation of concerns (_kinda_, this is just a school assignment).
 
 the presentational logic is done in the viewmodels, while the 'model' logic is done
 in the `MySqlHost` class. the viewmodel communicates with the model, while the page
-gets its state form the viewmodel class. 
+gets its state from the viewmodel class. 
 
-the viewmodel class only exposes the
-specific fields the view needs, and in read-only form. actions, such as next page,
-are expressed as URLs.
+the viewmodel class only exposes the specific fields the view needs, and 
+in read-only form. actions, such as next page, are expressed as URLs.
 
 ## todo
 - [ ] write a better damn README (sorry)
