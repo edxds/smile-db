@@ -1,5 +1,5 @@
 <?php
-require_once "Session.php";
+require_once "classes/Session.php";
 
 $session = Session::getInstance();
 $session->stop();

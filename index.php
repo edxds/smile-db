@@ -1,5 +1,5 @@
 <?php
-require_once "MainViewModel.php";
+require_once "classes/MainViewModel.php";
 
 $viewModel = new MainViewModel(
     $_GET["db_name"] ?? NULL,
