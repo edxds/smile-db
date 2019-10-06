@@ -1,0 +1,130 @@
+.home-header__connected-to {
+  font-size: 1rem;
+  color: hsla(var(--base-hue), 20%, 80%, 50%);
+}
+
+.home-header__host-name {
+  font-size: 1rem;
+  font-family: "Roboto Mono", monospace;
+  font-weight: 500;
+
+  color: hsla(var(--base-hue), 50%, 80%, 80%);
+
+  margin-left: 8px;
+}
+
+.home-header__disconnect {
+  margin-left: 32px;
+}
+
+.home__cards-container {
+  display: flex;
+  margin-bottom: var(--page-header-height);
+
+  height: calc(100% - var(--page-header-height));
+  max-height: calc(100% - var(--page-header-height));
+
+  margin-left: 64px;
+  margin-right: 64px;
+
+  flex: 1;
+}
+
+.home__left-card {
+  margin: 8px 0;
+
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: none !important;
+
+  flex: 1;
+  max-width: 432px;
+}
+
+.home__right-card {
+  flex: 2;
+}
+
+.details-card {
+  display: flex;
+  flex-direction: column;
+
+  padding: 0;
+}
+
+.details-card__no-content-msg {
+  font-size: 1rem;
+  font-family: "Roboto Mono", monospace;
+
+  color: hsla(var(--base-hue), 50%, 80%, 50%);
+
+  margin: auto 64px;
+  padding-bottom: 77px;
+}
+
+.details-card__databases {
+  flex: 2;
+  max-height: 40%;
+
+  border-bottom: solid 1px hsl(var(--base-hue), 10%, 15%);
+}
+
+.details-card__databases__title {
+  margin: 32px 32px 16px;
+}
+
+.details-card__tables {
+  flex: 3;
+  max-height: 60%;
+}
+
+.details-card__tables__title {
+  margin: 32px 32px 16px;
+}
+
+.details-card__content {
+  display: flex;
+  flex-direction: column;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  /* 77px is the height of the title (29px) plus its vertical margins (32px + 16px).
+     This hardcoded value is extremely brittle and prone to fail, and should be replaced
+     by a CSS variable that is changed through Javascript. */
+  height: calc(100% - 77px);
+}
+
+.details-card__content__list {
+  margin: 0;
+  padding: 0 16px 4px;
+
+  list-style: none;
+}
+
+/*.details-card__content ul {*/
+/*  margin: 0;*/
+/*  padding: 0 16px 4px;*/
+
+/*  list-style: none;*/
+/*}*/
+
+.details-card__content__list-item {
+  display: block;
+
+  padding: 8px 16px;
+  margin-bottom: 12px;
+
+  background-color: hsl(var(--base-hue), 10%, 10%);
+  border: solid 1px hsl(var(--base-hue), 11%, 15%);
+  border-radius: 4px;
+
+  text-decoration: none;
+  color: hsl(var(--base-hue), 80%, 96%);
+}
+
+.details-card__content__list-item--selected {
+  background-color: hsl(var(--base-hue), 100%, 50%);
+  border: none;
+  color: white;
+}

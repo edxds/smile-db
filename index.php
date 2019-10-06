@@ -11,6 +11,26 @@ if ($viewModel->shouldRedirectToConnect()) {
     header("Location: connect.html");
     exit();
 }
+
+function getDbListItemClassName($dbName) {
+  global $viewModel;
+
+  $selectedClassName = $viewModel->matchesSelectedDatabase($dbName)
+      ? "details-card__content__list-item--selected"
+      : "";
+
+  return "details-card__content__list-item " . $selectedClassName;
+}
+
+function getTableListItemClassName($tableName) {
+  global $viewModel;
+
+  $selectedClassName = $viewModel->matchesSelectedTable($tableName)
+      ? "details-card__content__list-item--selected"
+      : "";
+
+  return "details-card__content__list-item " . $selectedClassName;
+}
 ?>
 
 <!DOCTYPE html>
@@ -21,81 +41,112 @@ if ($viewModel->shouldRedirectToConnect()) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/scrollbar.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/home.css">
 
     <title>
       <?= $viewModel->pageTitle() ?>
     </title>
   </head>
   <body>
-    <header>
-      <div>:-)db</div>
+    <header class="brand-header page__header">
+      <div class="brand-header__logo">:-)db</div>
       <div>
-        <p>Conectado à <span><?= $viewModel->hostName() ?></span></p>
-        <a href="disconnect.php">Desconectar</a>
+        <span class="home-header__connected-to">
+          Conectado à
+          <span class="home-header__host-name">
+            <?= $viewModel->hostName() ?>
+          </span>
+        </span>
+        <a class="home-header__disconnect button" href="disconnect.php">Desconectar</a>
       </div>
     </header>
-    <section>
-      <h2>Bancos de Dados</h2>
-      <div>
-        <ul>
-          <?php foreach ($viewModel->dbNames() as $databaseName): ?>
-            <li>
-              <a href="<?= $viewModel->selectDatabaseUrl($databaseName) ?>">
-                <?= $databaseName ?>
-              </a>
-            </li>
-          <?php endforeach; ?>
-        </ul>
-      </div>
-    </section>
-    <section>
-      <h2>Tabelas</h2>
-      <div>
-        <?php if (!$viewModel->hasSelectedDb()): ?>
-          <p>Selecione um banco de dados para ver suas tabelas</p>
-        <?php else: ?>
-          <ul>
-            <?php foreach ($viewModel->tableNames() as $tableName): ?>
-              <li>
-                <a href="<?= $viewModel->selectTableUrl($tableName) ?>">
-                  <?= $tableName ?>
-                </a>
-              </li>
-            <?php endforeach; ?>
-          </ul>
-        <?php endif; ?>
-      </div>
-    </section>
-    <section>
-      <h2>Conteúdo</h2>
-      <div>
-        <?php if (!$viewModel->hasSelectedTable()): ?>
-          <p>Selecione uma tabela para ver seu conteúdo</p>
-        <?php else: ?>
-          <table>
-            <tr>
-              <?php foreach ($viewModel->tableSchema() as $column): ?>
-                <th><?= $column ?></th>
-              <?php endforeach; ?>
-            </tr>
-            <?php foreach ($viewModel->tableState() as $row): ?>
-              <tr>
-                <?php foreach ($row as $columnState): ?>
-                  <td> <?= $columnState ?></td>
+
+    <main class="page__content">
+      <div class="home__cards-container">
+
+        <div class="card card--elevation-2 home__left-card details-card">
+          <section class="details-card__databases">
+            <h2 class="details-card__databases__title">Bancos de Dados</h2>
+            <div class="details-card__content">
+              <ul class="details-card__content__list">
+                <?php foreach ($viewModel->dbNames() as $databaseName): ?>
+                  <li>
+                    <a class="<?= getDbListItemClassName($databaseName) ?>"
+                       href="<?= $viewModel->selectDatabaseUrl($databaseName) ?>">
+                      <?= $databaseName ?>
+                    </a>
+                  </li>
                 <?php endforeach; ?>
-              </tr>
-            <?php endforeach; ?>
-          </table>
-        <?php endif; ?>
+              </ul>
+            </div>
+          </section>
+          <section class="details-card__tables">
+            <h2 class="details-card__tables__title">Tabelas</h2>
+            <div class="details-card__content">
+              <?php if (!$viewModel->hasSelectedDb()): ?>
+                <p class="details-card__no-content-msg">
+                  Selecione um banco de dados para ver suas tabelas
+                </p>
+              <?php else: ?>
+                <ul class="details-card__content__list">
+                  <?php foreach ($viewModel->tableNames() as $tableName): ?>
+                    <li>
+                      <a class="<?= getTableListItemClassName($tableName) ?>"
+                         href="<?= $viewModel->selectTableUrl($tableName) ?>">
+                        <?= $tableName ?>
+                      </a>
+                    </li>
+                  <?php endforeach; ?>
+                </ul>
+              <?php endif; ?>
+            </div>
+          </section>
+        </div>
+
+        <div class="card card--elevation-4 home__right-card">
+          <section>
+            <h2>Conteúdo</h2>
+            <div>
+              <?php if (!$viewModel->hasSelectedTable()): ?>
+                <p class="details-card__no-content-msg">
+                  Selecione uma tabela para ver seu conteúdo
+                </p>
+              <?php else: ?>
+                <table>
+                  <tr>
+                    <?php foreach ($viewModel->tableSchema() as $column): ?>
+                      <th><?= $column ?></th>
+                    <?php endforeach; ?>
+                  </tr>
+                  <?php foreach ($viewModel->tableState() as $row): ?>
+                    <tr>
+                      <?php foreach ($row as $columnState): ?>
+                        <td> <?= $columnState ?></td>
+                      <?php endforeach; ?>
+                    </tr>
+                  <?php endforeach; ?>
+                </table>
+              <?php endif; ?>
+            </div>
+            <div>
+              <?php if ($viewModel->shouldShowPreviousButton()): ?>
+                <a href="<?= $viewModel->previousPageUrl() ?>">Anterior</a>
+              <?php endif; ?>
+              <?php if ($viewModel->shouldShowNextButton()): ?>
+                <a href="<?= $viewModel->nextPageUrl() ?>">Próximo</a>
+              <?php endif; ?>
+            </div>
+          </section>
+        </div>
+
       </div>
-      <div>
-        <?php if ($viewModel->shouldShowPreviousButton()): ?>
-          <a href="<?= $viewModel->previousPageUrl() ?>">Anterior</a>
-        <?php endif; ?>
-        <?php if ($viewModel->shouldShowNextButton()): ?>
-          <a href="<?= $viewModel->nextPageUrl() ?>">Próximo</a>
-        <?php endif; ?>
-      </div>
-    </section>
+
+    </main>
+
+    <script src="javascript/index.js"></script>
   </body>
 </html>
