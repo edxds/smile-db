@@ -17,6 +17,10 @@ html, body {
   color: hsl(var(--base-hue), 100%, 98%);
 }
 
+input {
+  color: hsl(var(--base-hue), 100%, 98%);
+}
+
 * {
   box-sizing: border-box;
 }
