@@ -12,6 +12,8 @@
 }
 
 .button {
+  text-decoration: none;
+
   transition: color 0.25s;
   transition-timing-function: var(--default-timing-function);
 
