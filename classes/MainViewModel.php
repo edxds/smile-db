@@ -104,8 +104,16 @@ class MainViewModel {
         return "index.php?db_name=$database";
     }
 
+    public function matchesSelectedDatabase($name) {
+      return $this->selected_db == $name;
+    }
+
     public function selectTableUrl($table) {
         return "index.php?db_name=$this->selected_db&table_name=$table";
+    }
+
+    public function matchesSelectedTable($name) {
+      return $this->selected_table == $name;
     }
 
     public function shouldShowNextButton() {
