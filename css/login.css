@@ -1,0 +1,15 @@
+.login-card {
+  width: 408px;
+  padding: 36px 44px;
+
+  margin-bottom: var(--page-header-height);
+}
+
+.login-card__title {
+  margin-top: 0;
+  margin-bottom: 32px;
+}
+
+.login-card__submit {
+  margin-top: 64px;
+}
