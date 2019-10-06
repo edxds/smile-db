@@ -1,5 +1,8 @@
 .brand-header {
   padding: 64px 128px 32px;
+
+  display: flex;
+  justify-content: space-between;
 }
 
 .brand-header__logo {
