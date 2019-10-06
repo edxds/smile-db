@@ -14,3 +14,8 @@
       0 0 4px rgba(0, 0, 0, 0.15);
 
 }
+
+.card.card--elevation-4 {
+  background-color: hsl(var(--base-hue), 10%, 10%);
+  border: 1px solid hsl(var(--base-hue), 10%, 20%);
+}
