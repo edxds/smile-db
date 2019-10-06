@@ -37,6 +37,8 @@ html, body {
 
   justify-content: center;
   align-items: center;
+
+  max-height: calc(100% - var(--page-header-height));
 }
 
 input {
