@@ -1,0 +1,29 @@
+.button:focus {
+  outline: none;
+}
+
+.button:hover {
+  cursor: pointer;
+  color: hsl(var(--base-hue), 100%, 70%);
+}
+
+.button:active {
+  color: hsl(var(--base-hue), 100%, 30%);
+}
+
+.button {
+  transition: color 0.25s;
+  transition-timing-function: var(--default-timing-function);
+
+  font-size: 16px;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  font-variant: small-caps;
+  text-transform: lowercase;
+  letter-spacing: 0.1rem;
+
+  color: hsl(var(--base-hue), 100%, 50%);
+
+  border: none;
+  background-color: transparent;
+}
