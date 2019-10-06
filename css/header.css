@@ -1,0 +1,10 @@
+.brand-header {
+  padding: 64px 128px 32px;
+}
+
+.brand-header__logo {
+  font-family: "Roboto Mono", monospace;
+  font-size: 16px;
+
+  color: hsla(var(--base-hue), 100%, 90%, 50%);
+}
