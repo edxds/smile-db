@@ -12,4 +12,5 @@
 
 .login-card__submit {
   margin-top: 64px;
+  align-self: flex-end;
 }
