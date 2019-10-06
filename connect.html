@@ -6,22 +6,41 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/fields.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/login.css">
 
     <title>Connect</title>
   </head>
   <body>
-    <header>
+    <header class="page__header">
       <div>:-)db</div>
     </header>
 
-    <main>
-      <h1>Nova Conexão</h1>
-      <form action="connect.php" method="post">
-        <input type="text" name="conn_host" id="input-host" />
-        <input type="text" name="conn_user" id="input-user" />
-        <input type="text" name="conn_pass" id="input-password" />
-        <button type="submit">Se Conectar</button>
-      </form>
-    </main>
+    <section class="page__content">
+      <main class="login-card card card--elevation-2 card--login">
+        <h1 class="login-card__title">Nova Conexão</h1>
+        <form action="connect.php" method="post" class="form-container">
+          <div class="input-group">
+            <input type="text" name="conn_host" id="input-host" required />
+            <label for="input-host">Endereço do Host</label>
+          </div>
+
+          <div class="input-group">
+            <input type="text" name="conn_user" id="input-user" required />
+            <label for="input-user">Usuário</label>
+          </div>
+
+          <div class="input-group">
+            <input type="text" name="conn_pass" id="input-password" required />
+            <label for="input-password">Senha</label>
+          </div>
+
+          <button type="submit" class="login-card__submit">Se Conectar</button>
+        </form>
+      </main>
+    </section>
+
+    <script src="javascript/index.js"></script>
   </body>
 </html>
