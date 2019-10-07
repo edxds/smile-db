@@ -88,7 +88,7 @@ function getTableListItemClassName($tableName) {
             <h2 class="details-card__tables__title">Tabelas</h2>
             <div class="details-card__content">
               <?php if (!$viewModel->hasSelectedDb()): ?>
-                <p class="details-card__no-content-msg">
+                <p class="no-content-msg">
                   Selecione um banco de dados para ver suas tabelas
                 </p>
               <?php else: ?>
@@ -108,30 +108,37 @@ function getTableListItemClassName($tableName) {
         </div>
 
         <div class="card card--elevation-4 home__right-card">
-          <section>
+          <section class="table-contents-card">
             <h2>Conteúdo</h2>
-            <div>
-              <?php if (!$viewModel->hasSelectedTable()): ?>
-                <p class="details-card__no-content-msg">
-                  Selecione uma tabela para ver seu conteúdo
-                </p>
-              <?php else: ?>
-                <table>
-                  <tr>
+            <?php if (!$viewModel->hasSelectedTable()): ?>
+              <p class="no-content-msg table-contents-card__no-content-msg">
+                Selecione uma tabela para ver seu conteúdo
+              </p>
+            <?php else: ?>
+              <div class="table-contents-card__container">
+                <table class="table-contents-card__table">
+                  <tr class="table-contents-card__table__header">
                     <?php foreach ($viewModel->tableSchema() as $column): ?>
                       <th><?= $column ?></th>
                     <?php endforeach; ?>
                   </tr>
                   <?php foreach ($viewModel->tableState() as $row): ?>
-                    <tr>
+                    <tr class="table-contents-card__table__row">
                       <?php foreach ($row as $columnState): ?>
                         <td> <?= $columnState ?></td>
                       <?php endforeach; ?>
                     </tr>
                   <?php endforeach; ?>
                 </table>
-              <?php endif; ?>
-            </div>
+
+                <!--
+                  Because an inset border/shadow won't work in the table (the cells' backgrounds would cover it),
+                  and an outset border/shadow won't work either because it would be cropped by the table container,
+                  we need to have another element, overlaid on top of the table, that has the inset border/shadow.
+                -->
+                <div class="table-contents-card__container__border-overlay"></div>
+              </div>
+            <?php endif; ?>
             <div>
               <?php if ($viewModel->shouldShowPreviousButton()): ?>
                 <a href="<?= $viewModel->previousPageUrl() ?>">Anterior</a>

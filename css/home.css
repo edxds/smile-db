@@ -23,6 +23,7 @@
 
   height: calc(100% - var(--page-header-height));
   max-height: calc(100% - var(--page-header-height));
+  max-width: calc(100% - 128px);
 
   margin-left: 64px;
   margin-right: 64px;
@@ -43,6 +44,7 @@
 
 .home__right-card {
   flex: 2;
+  max-width: 66%;
 }
 
 .details-card {
@@ -52,7 +54,7 @@
   padding: 0;
 }
 
-.details-card__no-content-msg {
+.no-content-msg {
   font-size: 1rem;
   font-family: "Roboto Mono", monospace;
 
@@ -102,13 +104,6 @@
   list-style: none;
 }
 
-/*.details-card__content ul {*/
-/*  margin: 0;*/
-/*  padding: 0 16px 4px;*/
-
-/*  list-style: none;*/
-/*}*/
-
 .details-card__content__list-item {
   display: block;
 
@@ -127,4 +122,122 @@
   background-color: hsl(var(--base-hue), 100%, 50%);
   border: none;
   color: white;
+}
+
+.table-contents-card {
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+  width: 100%;
+}
+
+.table-contents-card__no-content-msg {
+  margin: auto;
+  max-width: 250px;
+}
+
+.table-contents-card__container {
+  position: relative;
+
+  display: flex;
+  flex: 1;
+
+  max-width: 100%;
+
+  overflow-y: auto;
+  overflow-x: auto;
+
+  margin: 32px 32px 48px;
+}
+
+.table-contents-card__container__border-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: var(--current-table-width);
+  height: var(--current-table-height);
+
+  /* Simulate inset border, because an outset border would get cut off by the parent container */
+  box-shadow: inset 0 0 0 1px hsl(var(--base-hue), 10%, 25%);
+
+  /*
+  Even though we defined border-radii in the table cells, we still need to define it here,
+  so that the box-shadow/border follows the rounded corner.
+  */
+  border-radius: 4px;
+}
+
+.table-contents-card__table {
+  position: relative;
+
+  flex: 1;
+  max-height: var(--table-height);
+
+  border-spacing: 0;
+}
+
+.table-contents-card__table__header > th:first-of-type {
+  border-top-left-radius: 4px;
+}
+
+.table-contents-card__table__header > th:last-of-type {
+  border-top-right-radius: 4px;
+}
+
+.table-contents-card__table__header > th:not(:last-child) {
+  border-right: solid 1px hsl(var(--base-hue), 10%, 25%);
+}
+
+.table-contents-card__table__row:last-of-type > td:first-of-type {
+  border-bottom-left-radius: 4px;
+}
+
+.table-contents-card__table__row:last-of-type > td:last-of-type {
+  border-bottom-right-radius: 4px;
+}
+
+.table-contents-card__table__row > td:not(:last-child) {
+  border-right: solid 1px hsl(var(--base-hue), 10%, 25%);
+}
+
+.table-contents-card__table tbody {
+  max-height: var(--table-height);
+}
+
+.table-contents-card__table th, .table-contents-card__table td {
+  height: var(--table-item-height);
+}
+
+.table-contents-card__table__header {
+  background-color: hsl(var(--base-hue), 20%, 15%);
+  color: hsl(var(--base-hue), 100%, 65%);
+}
+
+.table-contents-card__table__header th {
+  padding: 0 24px;
+
+  font-family: "Roboto Mono", monospace;
+  font-weight: 500;
+  font-size: 16px;
+
+  text-align: start;
+}
+
+.table-contents-card__table__row {
+  background-color: hsl(var(--base-hue), 20%, 8%);
+}
+
+.table-contents-card__table__row:nth-child(even) {
+  background-color: hsl(var(--base-hue), 20%, 10%);
+}
+
+.table-contents-card__table__row td {
+  padding: 0 24px;
+
+  font-family: "Roboto Mono", monospace;
+  font-size: 16px;
+
+  text-align: start;
 }
