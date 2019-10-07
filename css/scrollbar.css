@@ -1,21 +1,12 @@
-:root {
-  scrollbar-face-color: hsl(var(--base-hue), 20%, 50%);
-  scrollbar-base-color: hsl(var(--base-hue), 20%, 50%);
-  scrollbar-3dlight-color: hsl(var(--base-hue), 20%, 50%);
-  scrollbar-highlight-color: hsl(var(--base-hue), 20%, 50%);
-  scrollbar-track-color: transparent;
-  scrollbar-arrow-color: transparent;
-  scrollbar-shadow-color: hsl(var(--base-hue), 20%, 50%);
-  scrollbar-dark-shadow-color: hsl(var(--base-hue), 20%, 50%);
+* {
+  /* Firefox specific */
+  scrollbar-color: hsl(var(--base-hue), 20%, 50%) transparent;
+  scrollbar-width: thin;
 }
 
 ::-webkit-scrollbar {
+  height: 6px;
   width: 6px;
-}
-
-::-webkit-scrollbar-button {
-  height: 0;
-  background-color: hsl(var(--base-hue), 20%, 50%);
 }
 
 ::-webkit-scrollbar-track {
@@ -29,12 +20,4 @@
 ::-webkit-scrollbar-thumb {
   background-color: hsl(var(--base-hue), 20%, 50%);
   border-radius: 2px;
-}
-
-::-webkit-scrollbar-corner {
-  background-color: hsl(var(--base-hue), 20%, 50%);
-}
-
-::-webkit-resizer {
-  background-color: hsl(var(--base-hue), 20%, 50%);
 }
