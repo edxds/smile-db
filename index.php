@@ -138,12 +138,22 @@ function getTableListItemClassName($tableName) {
               <div class="table-contents-card__container__border-overlay"></div>
             </div>
           <?php endif; ?>
-          <div>
+          <div class="table-contents-card__bottom-nav">
             <?php if ($viewModel->shouldShowPreviousButton()): ?>
-              <a href="<?= $viewModel->previousPageUrl() ?>">Anterior</a>
+              <a class="button table-contents-card__bottom-nav__prev"
+                 href="<?= $viewModel->previousPageUrl() ?>"
+              >
+                <img src="assets/caret--prev@3x.png" class="table-contents-card__bottom-nav__prev__icon" alt="">
+                <span>Anterior</span>
+              </a>
             <?php endif; ?>
             <?php if ($viewModel->shouldShowNextButton()): ?>
-              <a href="<?= $viewModel->nextPageUrl() ?>">Próximo</a>
+              <a class="button table-contents-card__bottom-nav__next"
+                 href="<?= $viewModel->nextPageUrl() ?>"
+              >
+                <span>Próximo</span>
+                <img src="assets/caret--next@3x.png" class="table-contents-card__bottom-nav__next__icon" alt="">
+              </a>
             <?php endif; ?>
           </div>
         </div>

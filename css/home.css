@@ -249,3 +249,42 @@
 
   text-align: start;
 }
+
+.table-contents-card__bottom-nav {
+  display: flex;
+  margin: 0 64px 44px;
+}
+
+.table-contents-card__bottom-nav__next {
+  display: flex;
+
+  font-size: 21px;
+  font-weight: 500;
+
+  margin-left: auto;
+}
+
+.table-contents-card__bottom-nav__next__icon {
+  width: 24px;
+  height: 24px;
+
+  margin-left: 8px;
+  margin-top: 1px; /* Optical balance */
+}
+
+.table-contents-card__bottom-nav__prev {
+  display: flex;
+
+  font-size: 21px;
+  font-weight: 500;
+
+  margin-right: auto;
+}
+
+.table-contents-card__bottom-nav__prev__icon {
+  width: 24px;
+  height: 24px;
+
+  margin-right: 8px;
+  margin-top: 1px; /* Optical balance */
+}
