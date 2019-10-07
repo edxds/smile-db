@@ -7,7 +7,7 @@ if (header) {
 }
 
 function updateTableContainerHeightVariable() {
-  const tableContainer = document.getElementsByClassName('table-contents-card__container')[0];
+  const tableContainer = document.getElementsByClassName('table-contents-card__content__container')[0];
   const tableContainerHeight = tableContainer.offsetHeight;
   const tableItemHeight = Math.max(tableContainerHeight / 11, 32);
 
@@ -19,7 +19,7 @@ function updateTableContainerHeightVariable() {
 }
 
 function updateCurrentTableDimensionsVariable() {
-  const table = document.getElementsByClassName('table-contents-card__table')[0];
+  const table = document.getElementsByClassName('table-contents-card__content__table')[0];
   const tableHeight = table.offsetHeight;
   const tableWidth = table.offsetWidth;
 
