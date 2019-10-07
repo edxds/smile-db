@@ -72,7 +72,7 @@
 }
 
 .details-card__databases__title {
-  margin: 32px 32px 16px;
+  margin: 32px 36px 16px;
 }
 
 .details-card__tables {
@@ -81,7 +81,7 @@
 }
 
 .details-card__tables__title {
-  margin: 32px 32px 16px;
+  margin: 32px 36px 16px;
 }
 
 .details-card__content {
@@ -136,7 +136,7 @@
 }
 
 .table-contents-card__title {
-  margin: 40px 32px 0;
+  margin: 40px 64px 0;
 }
 
 .table-contents-card__no-content-msg {
@@ -287,4 +287,11 @@
 
   margin-right: 8px;
   margin-top: 1px; /* Optical balance */
+}
+
+.card-title-icon {
+  width: 16px;
+  height: 16px;
+
+  margin-right: 16px;
 }

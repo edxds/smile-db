@@ -70,7 +70,10 @@ function getTableListItemClassName($tableName) {
 
         <div class="card card--elevation-2 home__left-card details-card">
           <section class="details-card__databases">
-            <h2 class="details-card__databases__title">Bancos de Dados</h2>
+            <h2 class="details-card__databases__title">
+              <img src="assets/icon__databases@3x.png" class="card-title-icon" alt="">
+              Bancos de Dados
+            </h2>
             <div class="details-card__content">
               <ul class="details-card__content__list">
                 <?php foreach ($viewModel->dbNames() as $databaseName): ?>
@@ -85,7 +88,10 @@ function getTableListItemClassName($tableName) {
             </div>
           </section>
           <section class="details-card__tables">
-            <h2 class="details-card__tables__title">Tabelas</h2>
+            <h2 class="details-card__tables__title">
+              <img src="assets/icon__tables@3x.png" class="card-title-icon" alt="">
+              Tabelas
+            </h2>
             <div class="details-card__content">
               <?php if (!$viewModel->hasSelectedDb()): ?>
                 <p class="no-content-msg">
@@ -108,7 +114,10 @@ function getTableListItemClassName($tableName) {
         </div>
 
         <div class="card card--elevation-4 home__right-card table-contents-card">
-          <h2 class="table-contents-card__title">Conteúdo</h2>
+          <h2 class="table-contents-card__title">
+            <img src="assets/icon__content@3x.png" class="card-title-icon" alt="">
+            Conteúdo
+          </h2>
           <?php if (!$viewModel->hasSelectedTable()): ?>
             <p class="no-content-msg table-contents-card__no-content-msg">
               Selecione uma tabela para ver seu conteúdo
