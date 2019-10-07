@@ -108,46 +108,44 @@ function getTableListItemClassName($tableName) {
         </div>
 
         <div class="card card--elevation-4 home__right-card table-contents-card">
-          <section class="table-contents-card__content">
-            <h2>Conteúdo</h2>
-            <?php if (!$viewModel->hasSelectedTable()): ?>
-              <p class="no-content-msg table-contents-card__content__no-content-msg">
-                Selecione uma tabela para ver seu conteúdo
-              </p>
-            <?php else: ?>
-              <div class="table-contents-card__content__container">
-                <table class="table-contents-card__content__table">
-                  <tr class="table-contents-card__content__table__header">
-                    <?php foreach ($viewModel->tableSchema() as $column): ?>
-                      <th><?= $column ?></th>
+          <h2 class="table-contents-card__title">Conteúdo</h2>
+          <?php if (!$viewModel->hasSelectedTable()): ?>
+            <p class="no-content-msg table-contents-card__no-content-msg">
+              Selecione uma tabela para ver seu conteúdo
+            </p>
+          <?php else: ?>
+            <div class="table-contents-card__container">
+              <table class="table-contents-card__table">
+                <tr class="table-contents-card__table__header">
+                  <?php foreach ($viewModel->tableSchema() as $column): ?>
+                    <th><?= $column ?></th>
+                  <?php endforeach; ?>
+                </tr>
+                <?php foreach ($viewModel->tableState() as $row): ?>
+                  <tr class="table-contents-card__table__row">
+                    <?php foreach ($row as $columnState): ?>
+                      <td> <?= $columnState ?></td>
                     <?php endforeach; ?>
                   </tr>
-                  <?php foreach ($viewModel->tableState() as $row): ?>
-                    <tr class="table-contents-card__content__table__row">
-                      <?php foreach ($row as $columnState): ?>
-                        <td> <?= $columnState ?></td>
-                      <?php endforeach; ?>
-                    </tr>
-                  <?php endforeach; ?>
-                </table>
+                <?php endforeach; ?>
+              </table>
 
-                <!--
-                  Because an inset border/shadow won't work in the table (the cells' backgrounds would cover it),
-                  and an outset border/shadow won't work either because it would be cropped by the table container,
-                  we need to have another element, overlaid on top of the table, that has the inset border/shadow.
-                -->
-                <div class="table-contents-card__content__container__border-overlay"></div>
-              </div>
-            <?php endif; ?>
-            <div>
-              <?php if ($viewModel->shouldShowPreviousButton()): ?>
-                <a href="<?= $viewModel->previousPageUrl() ?>">Anterior</a>
-              <?php endif; ?>
-              <?php if ($viewModel->shouldShowNextButton()): ?>
-                <a href="<?= $viewModel->nextPageUrl() ?>">Próximo</a>
-              <?php endif; ?>
+              <!--
+                Because an inset border/shadow won't work in the table (the cells' backgrounds would cover it),
+                and an outset border/shadow won't work either because it would be cropped by the table container,
+                we need to have another element, overlaid on top of the table, that has the inset border/shadow.
+              -->
+              <div class="table-contents-card__container__border-overlay"></div>
             </div>
-          </section>
+          <?php endif; ?>
+          <div>
+            <?php if ($viewModel->shouldShowPreviousButton()): ?>
+              <a href="<?= $viewModel->previousPageUrl() ?>">Anterior</a>
+            <?php endif; ?>
+            <?php if ($viewModel->shouldShowNextButton()): ?>
+              <a href="<?= $viewModel->nextPageUrl() ?>">Próximo</a>
+            <?php endif; ?>
+          </div>
         </div>
 
       </div>
