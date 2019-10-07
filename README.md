@@ -25,4 +25,4 @@ in read-only form. actions, such as next page, are expressed as URLs.
 
 ## todo
 - [ ] write a better damn README (sorry)
-- [ ] add css styling to match design file 
+- [x] add css styling to match design file 
