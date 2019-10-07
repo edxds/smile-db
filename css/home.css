@@ -173,6 +173,7 @@
   position: relative;
 
   flex: 1;
+  min-width: 100%;
   max-height: var(--table-height);
 
   border-spacing: 0;
